@@ -114,3 +114,4 @@ class FavouriteJobs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fav_job_id = db.Column(db.Integer, db.ForeignKey('job.job_id'))
     fav_user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
