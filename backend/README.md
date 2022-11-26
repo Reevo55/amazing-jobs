@@ -6,9 +6,9 @@ python3 -m venv venv\
 pip install -r /path/to/requirements.txt
 
 - init db\
-flask db init
-flask db migrate
-flask db upgrade
+flask db init \
+flask db migrate \
+flask db upgrade \
 
 - run app on 0.0.0.0\
 python -m flask run --host=0.0.0.0
