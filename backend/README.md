@@ -11,4 +11,9 @@ flask db migrate \
 flask db upgrade \
 
 - run app on 0.0.0.0\
-python -m flask run --host=0.0.0.0
+python -m flask run --host=0.0.0.0 
+
+
+After first run done - init default values: \
+flask init-db-example
+
