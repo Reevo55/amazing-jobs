@@ -8,7 +8,7 @@ interface Props {
 const DefaultLayout: React.FC<Props> = ({ children }) => (
   <>
     <StandardHeader></StandardHeader>
-    <main>{children}</main>
+    <main className="w-8/12 mx-auto">{children}</main>
     <footer></footer>
   </>
 );

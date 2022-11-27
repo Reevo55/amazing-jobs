@@ -1,11 +1,14 @@
 import ButtonLink from "../links/ButtonLink";
 import StandardLink from "../links/StandardLink";
+import Logo from "../../assets/logo.svg";
 
 export default function StandardHeader() {
   return (
-    <header className="my-5">
+    <nav className="my-5 w-8/12 mx-auto">
       <ul className="grid grid-cols-3 gap-3 justify-items-center">
-        <li>Logo</li>
+        <li className="justify-self-start">
+          <img src={Logo} alt="company logo" />
+        </li>
 
         <ul className="space-x-10">
           <li className="inline-block">
@@ -19,7 +22,7 @@ export default function StandardHeader() {
           </li>
         </ul>
 
-        <ul className="space-x-10">
+        <ul className="space-x-10 justify-self-end">
           <li className="inline-block">
             <StandardLink to={"/compare"}>Zaloguj się</StandardLink>
           </li>
@@ -28,6 +31,6 @@ export default function StandardHeader() {
           </li>
         </ul>
       </ul>
-    </header>
+    </nav>
   );
 }
