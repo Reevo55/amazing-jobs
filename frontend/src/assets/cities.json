@@ -1,0 +1,34 @@
+{
+  "pl": [
+    {
+      "id": 1,
+      "enum": "warsaw",
+      "name": "Warszawa"
+    },
+    {
+      "id": 2,
+      "enum": "krakow",
+      "name": "Kraków"
+    },
+    {
+      "id": 3,
+      "enum": "wroclaw",
+      "name": "Wrocław"
+    },
+    {
+      "id": 4,
+      "enum": "poznan",
+      "name": "Poznań"
+    },
+    {
+      "id": 5,
+      "enum": "gdansk",
+      "name": "Gdańsk"
+    },
+    {
+      "id": 6,
+      "enum": "szczecin",
+      "name": "Szczecin"
+    }
+  ]
+}

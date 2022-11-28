@@ -5,11 +5,21 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import Root from "./routes/Root";
+import Compare from "./routes/Compare";
+import Jobs from "./routes/Jobs";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+  },
+  {
+    path: "/jobs",
+    element: <Jobs />,
+  },
+  {
+    path: "/compare",
+    element: <Compare />,
   },
 ]);
 

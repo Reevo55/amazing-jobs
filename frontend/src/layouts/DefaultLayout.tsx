@@ -1,14 +1,14 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import StandardHeader from "../components/headers/StandardHeader";
 
 interface Props {
-  children?: JSX.Element;
+  className?: string;
 }
 
-const DefaultLayout: React.FC<Props> = ({ children }) => (
+const DefaultLayout = ({ children, className }: PropsWithChildren<Props>) => (
   <>
     <StandardHeader></StandardHeader>
-    <main className="w-8/12 mx-auto">{children}</main>
+    <main className={`w-8/12 mt-10 mx-auto ${className}`}>{children}</main>
     <footer></footer>
   </>
 );
