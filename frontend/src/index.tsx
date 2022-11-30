@@ -7,6 +7,8 @@ import "./index.css";
 import Root from "./routes/Root";
 import Compare from "./routes/Compare";
 import Jobs from "./routes/Jobs";
+import Register from "./routes/Register";
+import Login from "./routes/Login";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
   {
     path: "/compare",
     element: <Compare />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 

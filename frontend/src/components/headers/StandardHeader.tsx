@@ -24,10 +24,10 @@ export default function StandardHeader() {
 
         <ul className="space-x-10 justify-self-end">
           <li className="inline-block">
-            <StandardLink to={"/compare"}>Zaloguj się</StandardLink>
+            <StandardLink to={"/login"}>Zaloguj się</StandardLink>
           </li>
           <li className="inline-block">
-            <ButtonLink to={"/compare"}>Zarejestruj się</ButtonLink>
+            <ButtonLink to={"/register"}>Zarejestruj się</ButtonLink>
           </li>
         </ul>
       </ul>
