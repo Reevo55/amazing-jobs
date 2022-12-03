@@ -1,48 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
-import reportWebVitals from "./reportWebVitals";
-import "./index.css";
-import Root from "./routes/Root";
-import Compare from "./routes/Compare";
-import Jobs from "./routes/Jobs";
-import Register from "./routes/Register";
-import Login from "./routes/Login";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter as Router } from 'react-router-dom'
+import './index.css'
+import reportWebVitals from './reportWebVitals'
+import AppRoutes from './Routes'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-  },
-  {
-    path: "/jobs",
-    element: <Jobs />,
-  },
-  {
-    path: "/compare",
-    element: <Compare />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-]);
-
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </Provider>
   </React.StrictMode>
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()
