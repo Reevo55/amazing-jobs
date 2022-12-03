@@ -1,5 +1,6 @@
 export interface AppState {
   profileState: ProfileState
+  offerState: OfferState
 }
 
 export interface ProfileState {
@@ -7,7 +8,7 @@ export interface ProfileState {
   loadingErrorOccurred: boolean
 }
 
-export interface Offer {
+export interface OfferState {
   title: string
   location: string
   salary: string

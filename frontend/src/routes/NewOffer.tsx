@@ -1,12 +1,13 @@
 import DefaultLayout from '../layouts/DefaultLayout'
 import React from 'react'
-import { Offer } from '../types/types'
+import { AppState, OfferState } from '../types/types'
+import { connect } from 'react-redux'
 
-interface OfferDetailsState {
-  offer: Offer
+interface NewOfferProps {
+  offer: OfferState
 }
 
-const NewOffer = () => {
+const NewOffer: React.FunctionComponent<{ props?: NewOfferProps }> = ({ props }) => {
   return (
     <DefaultLayout>
       <h1>hejka</h1>
@@ -14,4 +15,8 @@ const NewOffer = () => {
   )
 }
 
-export default NewOffer
+export default connect(
+  (state: AppState): NewOfferProps => ({
+    offer: state.offerState,
+  })
+)(NewOffer)

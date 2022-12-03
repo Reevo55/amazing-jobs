@@ -1,9 +1,9 @@
 import DefaultLayout from '../layouts/DefaultLayout'
 import React from 'react'
-import { Offer } from '../types/types'
+import { OfferState } from '../types/types'
 
-interface OfferDetailsProps {
-  offer: Offer
+export interface OfferDetailsProps {
+  offer: OfferState
 }
 
 const OfferDetails: React.FunctionComponent<{ props?: OfferDetailsProps }> = ({ props }) => {
