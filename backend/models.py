@@ -53,17 +53,18 @@ class Job(db.Model):
     job_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     offer_type = db.Column(db.String(255), default=False, nullable=False) # user / pracuj / olx / jobiee
-    
+
+    location = db.Column(db.String(255), nullable=False)
     position_name = db.Column(db.String(255), nullable=False)
     company_name = db.Column(db.String(255), nullable=False)
     job_type = db.Column(db.String(255)) # stacjonarna / zdalna
-    salary =  db.Column(db.Float)
-    short_description = db.Column(db.Text)
-    required_experience = db.Column(db.Text)
-    required_skills = db.Column(db.Text)
-    things_to_do = db.Column(db.Text)
-    required_education = db.Column(db.Text)
-    benefits = db.Column(db.Text)
+    salary =  db.Column(db.String(255)
+    short_description = db.Column(db.Text) #o firmie
+    required_experience = db.Column(db.Text) #oczekiwania
+    required_skills = db.Column(db.Text) #twoja rola
+    things_to_do = db.Column(db.Text) #twoje zadania
+    required_education = db.Column(db.Text) #?
+    benefits = db.Column(db.Text) #benefity
 
     def __repr__(self):
         return '<Job {} {} {}>'.format(self.job_id, self.user_id, self.offer_type)

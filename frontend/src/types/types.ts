@@ -6,6 +6,7 @@ export interface AppState {
 export interface ProfileState {
   isLoading: boolean
   loadingErrorOccurred: boolean
+  userId?: string
 }
 
 export interface OfferState {

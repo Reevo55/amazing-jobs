@@ -7,7 +7,7 @@ import Jobs from './routes/Jobs'
 import Register from './routes/Register'
 import Login from './routes/Login'
 import OfferDetails from './routes/OfferDetails'
-import NewOffer from './routes/NewOffer'
+import ConnectedNewOffer from './routes/NewOffer'
 
 const BASE_PATH = '/'
 const AppRoutes: React.FC = () => {
@@ -18,7 +18,7 @@ const AppRoutes: React.FC = () => {
       <Route path={'/compare'} element={<Compare />} />
       <Route path={'/register'} element={<Register />} />
       <Route path={'/login'} element={<Login />} />
-      <Route path={'/new-offer'} element={<NewOffer />} />
+      <Route path={'/new-offer'} element={<ConnectedNewOffer />} />
       <Route path={'/offer-detail'} element={<OfferDetails />} />
     </Routes>
   )
