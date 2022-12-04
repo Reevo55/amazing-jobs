@@ -2,6 +2,7 @@ import DefaultLayout from "../layouts/DefaultLayout";
 import MyInput from "../components/inputs/MyInput";
 import MyButton from "../components/buttons/MyButton";
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom';
 import '../assets/Form.css';
 
 function Register() {
@@ -10,10 +11,49 @@ function Register() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [localization, setLocalization] = useState("");
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  async function sendRequest(data:any, endpoint:string) {   
+    const full_url = 'http://127.0.0.1:5000/' + endpoint       
+    
+    try {
+      const response = await fetch(full_url, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data)
+      });
+      
+      if (!response.ok) {
+        throw new Error(
+          `Server error: The status is ${response.status}`
+        );
+      }
+
+      let recevied_data = await response.json();
+      console.log(recevied_data)
+      navigate('/');
+
+    } catch(err:any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    } 
+  }
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
-    console.log(email + " " + pass + " " + first_name + " " +  second_name + " " + localization) 
+    const data = { email: email,
+                   password: pass,
+                   first_name: first_name,
+                   second_name: second_name,
+                   is_recruiter: false
+                 };
+    
+    sendRequest(data, 'register')
   }
 
   return (
