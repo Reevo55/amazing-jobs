@@ -26,9 +26,9 @@ export const createNewOfferAndRedirect = (userId: string, offer: OfferState) => 
                 required_education: 'studia wyższe',
                 benefits: offer.benefits,
             })
-        }).
-        then(() => window.top!.location = "/").
-        catch((error) => console.log(error)).
-        finally(() => dispatch(onIsLoadingChange(false)))
+        })
+            .then(() => window.top!.location = "/")
+            .catch((error) => console.log(error))
+            .finally(() => dispatch(onIsLoadingChange(false)))
     }
 }
