@@ -54,11 +54,11 @@ class Job(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     offer_type = db.Column(db.String(255), default=False, nullable=False) # user / pracuj / olx / jobiee
 
-    location = db.Column(db.String(255), nullable=False)
-    position_name = db.Column(db.String(255), nullable=False)
-    company_name = db.Column(db.String(255), nullable=False)
+    location = db.Column(db.String(255))
+    position_name = db.Column(db.String(255))
+    company_name = db.Column(db.String(255))
     job_type = db.Column(db.String(255)) # stacjonarna / zdalna
-    salary =  db.Column(db.String(255)
+    salary =  db.Column(db.String(255))
     short_description = db.Column(db.Text) #o firmie
     required_experience = db.Column(db.Text) #oczekiwania
     required_skills = db.Column(db.Text) #twoja rola
@@ -70,13 +70,14 @@ class Job(db.Model):
         return '<Job {} {} {}>'.format(self.job_id, self.user_id, self.offer_type)
 
     def from_dict(self, data):
-        fields = ['user_id', 'position_name','company_name', 'job_type', 'salary', 'short_description', 'required_experience',  'required_skills', 'things_to_do', 'required_education', 'benefits']
+        fields = ['user_id', 'position_name','company_name', 'location', 'job_type', 'salary', 'short_description', 'required_experience',  'required_skills', 'things_to_do', 'required_education', 'benefits']
         for field in fields:
             if field not in data:
                 raise ValueNotSet("Field: "+ field + " not present in json")
          
         self.user_id = data['user_id']
         self.offer_type = data['offer_type']
+        self.location = data['location']
         self.position_name = data['position_name']
         self.company_name = data['company_name']
         self.job_type = data['job_type']
@@ -94,6 +95,7 @@ class Job(db.Model):
             "job_id" : self.job_id,
             "user_id" : self.user_id,
             "offer_type" : self.offer_type,
+            "location" : self.location,
             "position_name" : self.position_name,
             "company_name" : self.company_name,
             "job_type" : self.job_type,

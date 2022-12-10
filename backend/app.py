@@ -54,7 +54,8 @@ def init_db_example():
     job1.position_name = 'Spawacz'
     job1.company_name = "SpawaczPol"
     job1.job_type = "stacjonarna"
-    job1.salary = 40000
+    job1.location = "Wrocław"
+    job1.salary = "40000"
     job1.short_description = "Bardzo dobra praca. Wszystko jest dobrze"
     job1.required_experience = "Trzeba umieć spawać"
     job1.required_skills = "Trzeba umieć spawać"
@@ -67,7 +68,8 @@ def init_db_example():
     job2.position_name = 'Konstruktor maszyn'
     job2.company_name = "Konstuktor.pl"
     job2.job_type = "stacjonarna"
-    job2.salary = 50000
+    job2.location = "Kraków"
+    job2.salary = "50000"
     job2.short_description = "Bardzo fajnie"
     job2.required_experience = "2 lata konstruowania maszyn"
     job2.required_skills = "Konstruowanie maszyn"
