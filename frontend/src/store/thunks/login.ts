@@ -7,6 +7,7 @@ export const tryLoggingAndRedirect = (data:any, endpoint:string) => {
     const checkResponse = (response:any) =>
     {
         console.log("Response: " + response)
+        localStorage.setItem("user_id", response);
     }
 
   return (dispatch: Dispatch) => {  
@@ -23,7 +24,7 @@ export const tryLoggingAndRedirect = (data:any, endpoint:string) => {
     })
     .then((response) => response.json())
     .then((response) => checkResponse(response) )  
-    //.then(() => window.top!.location = "/")
+    .then(() => window.top!.location = "/")
     .catch((error) => console.log(error))  
     .finally(() => dispatch(onIsLoadingChange(false)))
   }
