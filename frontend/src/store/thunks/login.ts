@@ -4,21 +4,10 @@ import {Dispatch} from "redux";
 
 export const tryLoggingAndRedirect = (data:any, endpoint:string) => {
     
-    const checkResponse = (response:any) =>
-    {
-        console.log("Response: " + response.status)
-        if(response.status === 200)
-        {
-          localStorage.setItem("user_id", response);
-        }else{
-          throw Error("User not found")
-        }
-    }
-
   return (dispatch: Dispatch) => {  
 
     dispatch(onIsLoadingChange(true))
-    const full_url = 'http://127.0.0.1:5000/' + endpoint       
+    const full_url = 'http://127.0.0.1:5000/' + endpoint     
     
     fetch(full_url, {
       method: 'POST',
@@ -26,8 +15,17 @@ export const tryLoggingAndRedirect = (data:any, endpoint:string) => {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(data)
+    })    
+    .then((response) => {
+      if(response.status === 200){
+          console.log("Login success")
+          return response.json();     
+      }else if(response.status !== 200){
+          console.log("Login failed")
+          throw Error("User not found")
+      }
     })
-    .then((response) => checkResponse(response) )  
+    .then((response) => {localStorage.setItem("user_id", response);} )  
     .then(() => window.top!.location = "/")
     .catch((error) => console.log(error))  
     .finally(() => dispatch(onIsLoadingChange(false)))

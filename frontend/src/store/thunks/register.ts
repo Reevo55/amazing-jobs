@@ -1,13 +1,6 @@
 import {onIsLoadingChange} from "../actions/profile";
 import {Dispatch} from "redux";
 
-const checkResponse = (response:any) =>
-{
-  console.log("Response: " + response.status)
-  if(response.status !== 200)
-    throw Error("User not found")
-  }
-
 
 export const createNewUserAndRedirect = (data:any, endpoint:string) => {
 
@@ -23,7 +16,15 @@ export const createNewUserAndRedirect = (data:any, endpoint:string) => {
       },
       body: JSON.stringify(data)
     })
-    .then((response) => checkResponse(response) )  
+    .then((response) => {
+      if(response.status === 200){
+          console.log("Register success")
+          return response.json();     
+      }else if(response.status !== 200){
+          console.log("Register failed")
+          throw Error("Register failed")
+      }
+    })
     .then(() => window.top!.location = "/")
     .catch((error) => console.log(error))  
     .finally(() => dispatch(onIsLoadingChange(false)))
