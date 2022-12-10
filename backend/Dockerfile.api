@@ -1,0 +1,9 @@
+FROM python:3.9
+WORKDIR /backend/
+
+COPY ./backend ./
+RUN pip install -r ./requirements.txt
+RUN flask db migrate
+RUN flask db upgrade
+RUN flask init-db-example
+ENTRYPOINT FLASK_APP=app.py flask run
