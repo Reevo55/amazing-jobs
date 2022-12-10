@@ -29,7 +29,10 @@ const NewOffer = ( newOfferState: NewOfferState ) => {
     const submit = () => {
         if (!validate())
             return
-        dispatch(createNewOfferAndRedirect(newOfferState.profile.userId!, offer))
+
+        const user_id = localStorage.getItem('user_id');
+        newOfferState.profile.userId = user_id!
+        dispatch(createNewOfferAndRedirect(newOfferState.profile.userId, offer))
     }
 
     const validate = (): boolean => {
