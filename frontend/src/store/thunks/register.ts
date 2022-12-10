@@ -1,13 +1,15 @@
 import {onIsLoadingChange} from "../actions/profile";
 import {Dispatch} from "redux";
 
+const checkResponse = (response:any) =>
+{
+  console.log("Response: " + response.status)
+  if(response.status !== 200)
+    throw Error("User not found")
+  }
+
 
 export const createNewUserAndRedirect = (data:any, endpoint:string) => {
-    
-    const checkResponse = (response:any) =>
-    {
-        console.log("User created?: " + response)
-    }
 
   return (dispatch: Dispatch) => {  
 
@@ -21,7 +23,6 @@ export const createNewUserAndRedirect = (data:any, endpoint:string) => {
       },
       body: JSON.stringify(data)
     })
-    .then((response) => response.json())
     .then((response) => checkResponse(response) )  
     .then(() => window.top!.location = "/")
     .catch((error) => console.log(error))  

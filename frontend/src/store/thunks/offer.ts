@@ -5,7 +5,7 @@ import {onIsLoadingChange} from "../actions/profile";
 export const createNewOfferAndRedirect = (userId: string, offer: OfferState) => {
     return (dispatch: Dispatch) => {
         dispatch(onIsLoadingChange(true))
-        fetch('http://192.168.100.6:5000/jobs', {
+        fetch('http://127.0.0.1:5000/jobs', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

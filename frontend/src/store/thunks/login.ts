@@ -6,8 +6,13 @@ export const tryLoggingAndRedirect = (data:any, endpoint:string) => {
     
     const checkResponse = (response:any) =>
     {
-        console.log("Response: " + response)
-        localStorage.setItem("user_id", response);
+        console.log("Response: " + response.status)
+        if(response.status === 200)
+        {
+          localStorage.setItem("user_id", response);
+        }else{
+          throw Error("User not found")
+        }
     }
 
   return (dispatch: Dispatch) => {  
@@ -22,7 +27,6 @@ export const tryLoggingAndRedirect = (data:any, endpoint:string) => {
       },
       body: JSON.stringify(data)
     })
-    .then((response) => response.json())
     .then((response) => checkResponse(response) )  
     .then(() => window.top!.location = "/")
     .catch((error) => console.log(error))  

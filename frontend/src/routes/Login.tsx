@@ -6,10 +6,11 @@ import { Link } from "react-router-dom";
 import '../assets/Form.css';
 import { useAppDispatch } from '../hooks';
 import { tryLoggingAndRedirect } from "../store/thunks/login";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const dispatch = useAppDispatch()
-
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const user_id = localStorage.getItem('user_id');
@@ -21,16 +22,25 @@ function Login() {
       password: pass,
     };
 
-    console.log(email + pass)
+    console.log("Zaloguj się: " + email + pass)
     dispatch(tryLoggingAndRedirect(data, 'login'))
+  }
+
+  const logoutSubmit = (e:any) => {
+    e.preventDefault();
+    localStorage.removeItem("user_id");
+    navigate("/");
   }
 
   return (
     <DefaultLayout>
       {user_id ? (
-        
-        <h2 className='mt-7' >Zalogowany</h2>
-       
+        <>
+          <h1 className="font-bold text-center text-4xl mt-5">Użytkownik jest już zalogowany. Chcesz się wylogować ?</h1>
+          <div className="col-md-12 text-center">
+          <MyButton className='mt-7 btn-lg' onClick={logoutSubmit} >Wyloguj się</MyButton>
+          </div>
+        </>
       ):(
         <>
           <h1 className="mt-5 font-bold text-center text-4xl">Zaloguj się i znajdź wymarzoną pracę !</h1>
