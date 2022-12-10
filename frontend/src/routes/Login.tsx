@@ -4,14 +4,24 @@ import MyButton from "../components/buttons/MyButton";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import '../assets/Form.css';
+import { useAppDispatch } from '../hooks';
+import { tryLoggingAndRedirect } from "../store/thunks/login";
 
 function Login() {
+  const dispatch = useAppDispatch()
+
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
+    const data = { 
+      email: email,
+      password: pass,
+    };
+
     console.log(email + pass)
+    dispatch(tryLoggingAndRedirect(data, 'login'))
   }
 
   return (
