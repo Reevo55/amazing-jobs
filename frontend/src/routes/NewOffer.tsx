@@ -30,9 +30,9 @@ const NewOffer = ( newOfferState: NewOfferState ) => {
         if (!validate())
             return
 
-        const user_id = localStorage.getItem('user_id');
-        newOfferState.profile.userId = user_id!
-        dispatch(createNewOfferAndRedirect(newOfferState.profile.userId, offer))
+        const current_user_id = JSON.parse(localStorage.getItem('user_id')!)
+        newOfferState.profile.userId = current_user_id
+        dispatch(createNewOfferAndRedirect(current_user_id, offer))
     }
 
     const validate = (): boolean => {

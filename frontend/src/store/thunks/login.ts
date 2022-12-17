@@ -25,7 +25,8 @@ export const tryLoggingAndRedirect = (data:any, endpoint:string) => {
           throw Error("User not found")
       }
     })
-    .then((response) => {localStorage.setItem("user_id", response);} )  
+    .then((response) => {
+       localStorage.setItem("user_id", JSON.stringify(response));} )  
     .then(() => window.top!.location = "/")
     .catch((error) => console.log(error))  
     .finally(() => dispatch(onIsLoadingChange(false)))
