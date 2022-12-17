@@ -6,9 +6,13 @@ import reportWebVitals from './reportWebVitals'
 import AppRoutes from './Routes'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
-import ConnectedLoadingOverlayWrapper from './components/utils/LoadingOverlay'
+import ConnectedLoadingOverlayWrapper from './components/utils/LoadingOverlay/LoadingOverlay'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+const overlay = document.createElement('div')
+overlay.setAttribute('id', 'overlay-root')
+document.getElementById('root')!.parentElement!.appendChild(overlay)
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
