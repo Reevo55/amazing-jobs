@@ -8,6 +8,7 @@ import Register from './routes/Register'
 import Login from './routes/Login'
 import OfferDetails from './routes/OfferDetails'
 import ConnectedNewOffer from './routes/NewOffer'
+import GeneratorCV from './routes/GeneratorCV'
 
 const BASE_PATH = '/'
 const AppRoutes: React.FC = () => {
@@ -20,6 +21,7 @@ const AppRoutes: React.FC = () => {
       <Route path={'/login'} element={<Login />} />
       <Route path={'/new-offer'} element={<ConnectedNewOffer />} />
       <Route path={'/offer-detail'} element={<OfferDetails />} />
+      <Route path={'/cv-generator'} element={<GeneratorCV />} />
     </Routes>
   )
 }
