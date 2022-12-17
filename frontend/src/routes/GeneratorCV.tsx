@@ -1,5 +1,5 @@
 import DefaultLayout from "../layouts/DefaultLayout";
-import OfferFormInput from "../components/inputs/OfferFormInput";
+import CvFormInput from "../components/inputs/CvGeneratorFormInput";
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Font } from '@react-pdf/renderer';
 import {CVState } from '../types/types'
 import React, {useState} from 'react'
@@ -146,68 +146,79 @@ function GeneratorCV()
         <div className={"max-w-5xl"}>
             <h2> Wypełnij informacje w każdej sekcji. CV zostanie wygenerowane na podstawie wypełnionych pól. </h2>
             <div className={"grid grid-cols-1 gap-4"}>
-                    <OfferFormInput props={{
+                    <CvFormInput props={{
                         value: cvDetails.full_name,
+                        type: 'casual',
                         label: "Imię i nazwisko",
                         setValue: (newValue) => setCvDetails({...cvDetails, full_name: newValue})
                     }}/>
 
-                    <OfferFormInput props={{
+                    <CvFormInput props={{
                         value: cvDetails.summary,
+                        type: 'textarea',
                         label: "O mnie / Ogólne informacje",
                         setValue: (newValue) => setCvDetails({...cvDetails, summary: newValue})
                     }}/>
                     
-                    <OfferFormInput props={{
+                    <CvFormInput props={{
                         value: cvDetails.skills,
+                        type: 'textarea',
                         label: "Twoje umiejętności",
                         setValue: (newValue) => setCvDetails({...cvDetails, skills: newValue})
                     }}/>
 
-                    <OfferFormInput props={{
+                    <CvFormInput props={{
                         value: cvDetails.experience,
+                        type: 'textarea',
                         label: "Twoje doświadczenie",
                         setValue: (newValue) => setCvDetails({...cvDetails, experience: newValue})
                     }}/>
 
-                    <OfferFormInput props={{
+                    <CvFormInput props={{
                         value: cvDetails.education,
+                        type: 'textarea',
                         label: "Twoja edukacja",
                         setValue: (newValue) => setCvDetails({...cvDetails, education: newValue})
                     }}/>
 
-                    <OfferFormInput props={{
+                    <CvFormInput props={{
                         value: cvDetails.languages,
+                        type: 'textarea',
                         label: "Jakie znasz języki",
                         setValue: (newValue) => setCvDetails({...cvDetails, languages: newValue})
                     }}/>
 
-                    <OfferFormInput props={{
+                    <CvFormInput props={{
                         value: cvDetails.courses_certifcates,
+                        type: 'textarea',
                         label: "Ukończone kursy/zdobyte certyfikaty",
                         setValue: (newValue) => setCvDetails({...cvDetails, courses_certifcates: newValue})
                     }}/>
 
-                    <OfferFormInput props={{
+                    <CvFormInput props={{
                         value: cvDetails.hobbies,
+                        type: 'textarea',
                         label: "Twoje hobby",
                         setValue: (newValue) => setCvDetails({...cvDetails, hobbies: newValue})
                     }}/>
 
-                    <OfferFormInput props={{
+                    <CvFormInput props={{
                         value: cvDetails.address,
+                        type: 'textarea',
                         label: "Twój adres zamieszkania",
                         setValue: (newValue) => setCvDetails({...cvDetails, address: newValue})
                     }}/>
 
-                    <OfferFormInput props={{
+                    <CvFormInput props={{
                         value: cvDetails.phone,
+                        type: 'casual',
                         label: "Twój numer telefonu",
                         setValue: (newValue) => setCvDetails({...cvDetails, phone: newValue})
                     }}/>
 
-                    <OfferFormInput props={{
+                    <CvFormInput props={{
                         value: cvDetails.email,
+                        type: 'casual',
                         label: "Twój email",
                         setValue: (newValue) => setCvDetails({...cvDetails, email: newValue})
                     }}/>
