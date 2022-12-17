@@ -20,3 +20,17 @@ export interface OfferState {
   expectations: string
   benefits: string
 }
+
+export interface CVState {
+  summary: string
+  skills: string
+  experience: string
+  education: string
+  languages: string
+  courses_certifcates: string
+  hobbies: string
+  address: string
+  phone: string
+  email: string
+  full_name: string
+}
