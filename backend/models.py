@@ -16,6 +16,7 @@ class User(db.Model):
     is_recruiter = db.Column(db.Boolean, default=False, nullable=False)
     
     offers = db.relationship("Job", backref='user', lazy='dynamic')
+    cv_documents = db.relationship("CvData", backref='user', lazy='dynamic')
 
     def __repr__(self):
         return '<User {} {} {} {}>'.format(self.id, self.email, self.first_name, self.second_name)
@@ -118,3 +119,61 @@ class FavouriteJobs(db.Model):
     fav_job_id = db.Column(db.Integer, db.ForeignKey('job.job_id'))
     fav_user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+class CvData(db.Model):
+    __tablename__ = 'cv_data'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    summary = db.Column(db.Text)
+    skills = db.Column(db.Text)
+    experience = db.Column(db.Text)
+    education = db.Column(db.Text)
+    languages = db.Column(db.Text)
+    courses_certifcates = db.Column(db.Text)
+    hobbies = db.Column(db.Text)
+    address = db.Column(db.Text)
+    phone = db.Column(db.String(255))
+    email = db.Column(db.String(255))
+    full_name = db.Column(db.String(255))
+
+    def __repr__(self):
+        return '<CV data {} {} {}>'.format(self.id, self.user_id, self.summary)
+
+    def from_dict(self, data):
+        fields = ['user_id', 'summary','skills', 'experience', 'education', 'languages', 'courses_certifcates', 'hobbies',  'address', 'phone', 'email', 'full_name']
+        for field in fields:
+            if field not in data:
+                raise ValueNotSet("Field: "+ field + " not present in json")
+         
+        self.user_id = data['user_id']
+        self.summary = data['summary']
+        self.skills = data['skills']
+        self.experience = data['experience']
+        self.education = data['education']
+        self.languages = data['languages']
+        self.courses_certifcates = data['courses_certifcates']
+        self.hobbies = data['hobbies']
+        self.address = data['address']
+        self.phone = data['phone']
+        self.email = data['email']
+        self.full_name = data['full_name']
+
+
+    def to_dict(self):
+        return_dict = {
+            "user_id" : self.user_id,
+            "summary" : self.summary,
+            "skills" : self.skills,
+            "experience" : self.experience,
+            "education" : self.education,
+            "languages" : self.languages,
+            "courses_certifcates" : self.courses_certifcates,
+            "hobbies" : self.hobbies,
+            "address" : self.address,
+            "phone" : self.phone,
+            "email" : self.email,
+            "full_name" : self.full_name,
+        }
+        
+        return return_dict

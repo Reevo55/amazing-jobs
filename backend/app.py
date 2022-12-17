@@ -28,7 +28,7 @@ def init_empty_db():
     click.echo('Initialized empty db')
 
 def init_db_example():
-    from .models import User, Job, FavouriteJobs
+    from .models import User, Job, FavouriteJobs, CvData
 
     init_empty_db()
     user = User()
@@ -84,6 +84,21 @@ def init_db_example():
     favourite.fav_job_id = 2
     favourite.fav_user_id = 1
     db.session.add(favourite)
+
+    cv_data = CvData()
+    cv_data.user_id = 1
+    cv_data.address = "Krzelow"
+    cv_data.courses_certifcates = "Kurs IT"
+    cv_data.education = "WSB"
+    cv_data.email = "example@wp.pl"
+    cv_data.experience = "Dziesięć lat KGHM"
+    cv_data.full_name = "Władysław Wąski"
+    cv_data.hobbies = "Piłka nożna"
+    cv_data.languages = "Angielski C2, Niemiecki B1"
+    cv_data.phone = "111 111 111"
+    cv_data.skills = "Granie na pianinie. Teamwork"
+    cv_data.summary = "Idealny na to stanowisko"
+    db.session.add(cv_data)
     db.session.commit()
 
     click.echo('Initialized db with default values')
