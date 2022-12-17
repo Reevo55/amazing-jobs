@@ -144,8 +144,8 @@ function GeneratorCV()
     return (
       <DefaultLayout>
         <div className={"max-w-5xl"}>
-            <h2> Wypełnij informacje w każdej sekcji. CV zostanie wygenerowane na podstawie wypełnionych pól. </h2>
-            <div className={"grid grid-cols-1 gap-4"}>
+            <h2 className="font-bold text-center text-2xl mt-10"> Wypełnij informacje w każdej sekcji. <br></br>CV zostanie wygenerowane na podstawie wypełnionych pól. </h2>
+            <div className={"mt-10 grid grid-cols-1 gap-4"}>
                     <CvFormInput props={{
                         value: cvDetails.full_name,
                         type: 'casual',
