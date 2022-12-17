@@ -49,7 +49,7 @@ def login_user():
     if requested_user is None:
         return bad_request('User not found in database')
     
-    if not check_password_hash(requested_user.password, req_password):
+    if not requested_user.password==req_password:
         return bad_request('Wrong password')
 
 

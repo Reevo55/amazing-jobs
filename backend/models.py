@@ -33,7 +33,7 @@ class User(db.Model):
         self.email = data['email']
 
         # validate password
-        self.password = generate_password_hash(data['password'], method='sha256') 
+        self.password = data['password']#//generate_password_hash(data['password'], method='sha256') 
         self.is_recruiter = data['is_recruiter']
 
 
