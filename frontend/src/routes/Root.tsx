@@ -1,12 +1,12 @@
-import HeroSearch from "../components/HeroSearch";
-import DefaultLayout from "../layouts/DefaultLayout";
+import HeroSearch from '../components/HeroSearch'
+import DefaultLayout from '../layouts/DefaultLayout'
 
 function Root() {
   return (
     <DefaultLayout>
       <HeroSearch></HeroSearch>
     </DefaultLayout>
-  );
+  )
 }
 
-export default Root;
+export default Root

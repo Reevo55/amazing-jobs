@@ -1,8 +1,7 @@
 To run:
 - create venv and install requirements\
 \
-python3 -m venv venv\
-.venv/bin/activate\
+python3 -m venv venv\ .venv/bin/activate\
 pip install -r /path/to/requirements.txt
 
 - init db\

@@ -34,3 +34,32 @@ export interface CVState {
   email: string
   full_name: string
 }
+
+export type Job = {
+  job_id: number
+  user_id: String
+  offer_type: String
+  position_name: String
+  company_name: String
+  job_type: String
+  location: String
+  salary: String
+  short_description: String
+  required_experience: String
+  required_skills: String
+  things_to_do: String
+  required_education: String
+  benefits: String
+}
+
+export interface City {
+  name: string
+  enum: string
+}
+
+export type Filters = {
+  education: string
+  skill: string
+  min: number
+  max: number
+}
