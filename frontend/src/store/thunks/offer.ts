@@ -31,14 +31,7 @@ export const createNewOfferAndRedirect = (userId: string, offer: OfferState) => 
     })
       .then(res =>
         res.status == 200
-          ? dispatch(
-              onShowStatusMessage(
-                'Sukces',
-                'Pomyslnie utworzono ofertę',
-                MessageType.success,
-                () => (window.top!.location = '/')
-              )
-            )
+          ? dispatch(onShowStatusMessage('Sukces', 'Pomyslnie utworzono ofertę', MessageType.success))
           : dispatch(onShowStatusMessage('Coś poszło nie tak', 'Spróbuj ponownie później', MessageType.failure))
       )
       .catch(error => {

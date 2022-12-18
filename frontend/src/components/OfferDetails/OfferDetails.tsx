@@ -8,6 +8,8 @@ import OfferBody from './OfferBody/OfferBody'
 import { useAppDispatch } from '../../hooks'
 import { onIsLoadingChange } from '../../store/actions/profile'
 import { onShowStatusMessage } from '../../store/actions/statusMessage'
+import { onCompareOfferAdded } from '../../store/actions/comparator'
+import { useNavigate } from 'react-router-dom'
 
 export interface OfferDetailsProps {
   offer: OfferState
@@ -17,6 +19,7 @@ const OfferDetails: React.FunctionComponent<{ props?: OfferDetailsProps }> = ({ 
   const offer: OfferState = props?.offer || offerInitialState
   const [isApplication, setIsApplication] = useState(false)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const delay = (ms: number) => {
     return new Promise(res => setTimeout(res, ms))
@@ -26,12 +29,17 @@ const OfferDetails: React.FunctionComponent<{ props?: OfferDetailsProps }> = ({ 
     dispatch(onIsLoadingChange(true))
     await delay(2137)
     dispatch(onIsLoadingChange(false))
+    dispatch(onShowStatusMessage('Sukces', 'Pracodawca otrzymał twoją aplikację.', MessageType.success))
+    navigate('/')
+  }
+
+  const compare = () => {
+    dispatch(onCompareOfferAdded(offer))
     dispatch(
       onShowStatusMessage(
-        'Sukces',
-        'Pracodawca otrzymał twoją aplikację.',
-        MessageType.success,
-        () => (window.top!.location = '/')
+        'Dodano do porównywarki',
+        'Oferta dodana do porównywaki, wybierz ją na ekranie porównywania aby porównać z inną ofertą',
+        MessageType.info
       )
     )
   }
@@ -62,7 +70,7 @@ const OfferDetails: React.FunctionComponent<{ props?: OfferDetailsProps }> = ({ 
             expectations={offer.expectations || 'Nie podano'}
             benefits={offer.benefits || 'Nie podano'}
             apply={() => setIsApplication(true)}
-            compare={() => console.log('Compare')}
+            compare={compare}
           />
         )}
       </div>

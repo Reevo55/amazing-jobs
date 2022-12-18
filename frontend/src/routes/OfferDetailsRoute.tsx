@@ -42,6 +42,7 @@ export const OfferDetailsRoute = () => {
     const body = await res.json()
     return {
       offer: {
+        id: body.job_id || undefined,
         title: body.position_name!,
         location: body.location!,
         salary: body.salary!,
