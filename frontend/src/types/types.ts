@@ -19,6 +19,7 @@ export interface OfferState {
   yourTasks: string
   expectations: string
   benefits: string
+  legal: string
 }
 
 export interface CVState {

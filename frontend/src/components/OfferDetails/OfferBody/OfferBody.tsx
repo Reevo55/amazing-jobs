@@ -17,7 +17,7 @@ const OfferBody = ({ aboutCompany, role, yourTasks, expectations, benefits, appl
   }
 
   return (
-    <div id={'offer-body'} className={'offer-bddy bg-black text-white px-4 py-4'}>
+    <div id={'offer-body'} className={'offer-body bg-black text-white px-4 py-4'}>
       <div id={'offer-content'} className={''}>
         <div className={'text-3xl font-bold leading-9'}>Szczegóły</div>
         <div id={'about-company'} className={'mt-4'}>

@@ -1,8 +1,9 @@
 import DefaultLayout from '../layouts/DefaultLayout'
-import React from 'react'
+import React, { useState } from 'react'
 import { OfferState } from '../types/types'
 import { offerInitialState } from '../store/reducers/offerReducer'
 import OfferHeader from '../components/OfferDetails/OfferHeader/OfferHeader'
+import ApplicationForm from '../components/OfferDetails/ApplicationForm/ApplicationForm'
 import OfferBody from '../components/OfferDetails/OfferBody/OfferBody'
 
 export interface OfferDetailsProps {
@@ -11,6 +12,7 @@ export interface OfferDetailsProps {
 
 const OfferDetails: React.FunctionComponent<{ props?: OfferDetailsProps }> = ({ props }) => {
   const offer: OfferState = props?.offer || offerInitialState
+  const [isApplication, setIsApplication] = useState(false)
 
   return (
     <DefaultLayout>
@@ -23,15 +25,24 @@ const OfferDetails: React.FunctionComponent<{ props?: OfferDetailsProps }> = ({ 
           isInternal={true}
           externalServiceName={'pracuj.pl'}
         />
-        <OfferBody
-          aboutCompany={offer.aboutCompany || 'Nie podano'}
-          role={offer.role || 'Nie podano'}
-          yourTasks={offer.yourTasks || 'Nie podano'}
-          expectations={offer.expectations || 'Nie podano'}
-          benefits={offer.benefits || 'Nie podano'}
-          apply={() => console.log('Apply')}
-          compare={() => console.log('Compare')}
-        />
+        {isApplication ? (
+          <ApplicationForm
+            cvs={['Nazwa CV', 'Nazwa CV2']}
+            legal={offer.legal || 'Nie podano'}
+            back={() => setIsApplication(false)}
+            apply={() => console.log('Apply')}
+          />
+        ) : (
+          <OfferBody
+            aboutCompany={offer.aboutCompany || 'Nie podano'}
+            role={offer.role || 'Nie podano'}
+            yourTasks={offer.yourTasks || 'Nie podano'}
+            expectations={offer.expectations || 'Nie podano'}
+            benefits={offer.benefits || 'Nie podano'}
+            apply={() => setIsApplication(true)}
+            compare={() => console.log('Compare')}
+          />
+        )}
       </div>
     </DefaultLayout>
   )
