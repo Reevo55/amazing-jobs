@@ -108,7 +108,7 @@ class Job(db.Model):
             "required_skills" : self.required_skills,
             "things_to_do" : self.things_to_do,
             "required_education" : self.required_education,
-            "benefits" : self.benefits
+            "benefits" : self.benefits,
             "legal" : self.legal
         }
 
