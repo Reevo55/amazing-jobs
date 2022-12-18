@@ -60,7 +60,7 @@ const ApplicationForm = ({ legal, cvs, back, apply }: ApplicationFormProps) => {
           <div id={'select-cv'} className={'text-3xl font-bold leading-9'}>
             Sprawdź dane kontaktowe
           </div>
-          <div className={'bg-white text-black rounded-md p-1'} dangerouslySetInnerHTML={createMarkup(legal)} />
+          <div className={'bg-white text-black rounded-md p-1'}> //TODO </div>
         </div>
       </div>
       <div id={'application-footer'} className={'grid grid-cols-2 gap-2 mt-8'}>

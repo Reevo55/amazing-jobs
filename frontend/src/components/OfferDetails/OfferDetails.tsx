@@ -1,13 +1,13 @@
-import DefaultLayout from '../layouts/DefaultLayout'
+import DefaultLayout from '../../layouts/DefaultLayout'
 import React, { useState } from 'react'
-import { MessageType, OfferState } from '../types/types'
-import { offerInitialState } from '../store/reducers/offerReducer'
-import OfferHeader from '../components/OfferDetails/OfferHeader/OfferHeader'
-import ApplicationForm from '../components/OfferDetails/ApplicationForm/ApplicationForm'
-import OfferBody from '../components/OfferDetails/OfferBody/OfferBody'
-import { useAppDispatch } from '../hooks'
-import { onIsLoadingChange } from '../store/actions/profile'
-import { onShowStatusMessage } from '../store/actions/statusMessage'
+import { MessageType, OfferState } from '../../types/types'
+import { offerInitialState } from '../../store/reducers/offerReducer'
+import OfferHeader from './OfferHeader/OfferHeader'
+import ApplicationForm from './ApplicationForm/ApplicationForm'
+import OfferBody from './OfferBody/OfferBody'
+import { useAppDispatch } from '../../hooks'
+import { onIsLoadingChange } from '../../store/actions/profile'
+import { onShowStatusMessage } from '../../store/actions/statusMessage'
 
 export interface OfferDetailsProps {
   offer: OfferState
