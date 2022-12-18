@@ -6,7 +6,7 @@ export default function StandardHeader() {
   const user_id = localStorage.getItem('user_id')
 
   return (
-    <nav className='my-6 w-10/12 mx-auto'>
+    <nav className='w-10/12 mx-auto my-6'>
       <ul className='grid grid-cols-3 gap-3 justify-items-center'>
         <li className='justify-self-start'>
           <img src={Logo} alt='company logo' />
@@ -17,7 +17,7 @@ export default function StandardHeader() {
             <StandardLink to={'/'}>Strona główna</StandardLink>
           </li>
           <li className='inline-block'>
-            <StandardLink to={'/szukaj'}>Szukaj</StandardLink>
+            <StandardLink to={'/jobs'}>Szukaj</StandardLink>
           </li>
           <li className='inline-block'>
             <StandardLink to={'/new-offer'}>Porównuj</StandardLink>
