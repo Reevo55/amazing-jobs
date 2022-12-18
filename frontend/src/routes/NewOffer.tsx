@@ -6,6 +6,7 @@ import OfferFormTextArea from '../components/inputs/OfferRichEditor'
 import { useAppDispatch } from '../hooks'
 import { createNewOfferAndRedirect } from '../store/thunks/offer'
 import OfferFormInput from '../components/inputs/OfferFormInput'
+import { useNavigate } from 'react-router-dom'
 
 interface NewOfferState {
   profile: ProfileState
@@ -13,6 +14,7 @@ interface NewOfferState {
 
 const NewOffer = (newOfferState: NewOfferState) => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const [offer, setOffer] = useState<OfferState>({
     title: '',
@@ -33,6 +35,7 @@ const NewOffer = (newOfferState: NewOfferState) => {
     const current_user_id = JSON.parse(localStorage.getItem('user_id')!)
     newOfferState.profile.userId = current_user_id
     dispatch(createNewOfferAndRedirect(current_user_id, offer))
+    navigate('/')
   }
 
   const validate = (): boolean => {

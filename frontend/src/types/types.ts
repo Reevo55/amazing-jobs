@@ -2,6 +2,7 @@ export interface AppState {
   profileState: ProfileState
   offerState: OfferState
   statusMessageState: StatusMessageState
+  comparatorState: ComparatorState
 }
 
 export interface ProfileState {
@@ -25,6 +26,7 @@ export enum MessageType {
 }
 
 export interface OfferState {
+  id?: string
   title: string
   location: string
   salary: string
@@ -35,6 +37,10 @@ export interface OfferState {
   expectations: string
   benefits: string
   legal: string
+}
+
+export interface ComparatorState {
+  toCompare: OfferState[]
 }
 
 export interface CVState {

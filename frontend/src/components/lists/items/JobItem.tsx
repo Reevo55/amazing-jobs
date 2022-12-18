@@ -11,7 +11,7 @@ function JobItem({ job }: JobListProps) {
   const navigate = useNavigate()
 
   const checkOffer = () => {
-    navigate(`/jobs?jobId=${job.job_id}`)
+    navigate(`/offer-details?jobId=${job.job_id}`)
   }
 
   return (
