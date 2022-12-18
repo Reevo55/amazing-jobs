@@ -5,10 +5,12 @@ import { Store } from 'redux'
 import reduxThunk, { ThunkDispatch } from 'redux-thunk'
 import rootReducer from './reducers/reducers'
 import { offerInitialState } from './reducers/offerReducer'
+import { statusMessageInitialState } from './reducers/statusMessageReducer'
 
 export const initialState: AppState = {
   profileState: profileInitialState,
   offerState: offerInitialState,
+  statusMessageState: statusMessageInitialState,
 }
 
 export const store: Store<AppState> & { dispatch: ThunkDispatch<AppState, any, AnyAction> } = configureStore({
