@@ -66,12 +66,13 @@ class Job(db.Model):
     things_to_do = db.Column(db.Text) #twoje zadania
     required_education = db.Column(db.Text) #?
     benefits = db.Column(db.Text) #benefity
+    legal = db.Column(db.Text) #zgody na przetwarzanie itp
 
     def __repr__(self):
         return '<Job {} {} {}>'.format(self.job_id, self.user_id, self.offer_type)
 
     def from_dict(self, data):
-        fields = ['user_id', 'position_name','company_name', 'location', 'job_type', 'salary', 'short_description', 'required_experience',  'required_skills', 'things_to_do', 'required_education', 'benefits']
+        fields = ['user_id', 'position_name','company_name', 'location', 'job_type', 'salary', 'short_description', 'required_experience',  'required_skills', 'things_to_do', 'required_education', 'benefits', 'legal']
         for field in fields:
             if field not in data:
                 raise ValueNotSet("Field: "+ field + " not present in json")
@@ -89,6 +90,7 @@ class Job(db.Model):
         self.things_to_do = data['things_to_do']
         self.required_education = data['required_education']
         self.benefits = data['benefits']
+        self.legal = data['legal']
 
 
     def to_dict(self):
@@ -106,7 +108,8 @@ class Job(db.Model):
             "required_skills" : self.required_skills,
             "things_to_do" : self.things_to_do,
             "required_education" : self.required_education,
-            "benefits" : self.benefits
+            "benefits" : self.benefits,
+            "legal" : self.legal
         }
 
         return return_dict

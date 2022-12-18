@@ -12,6 +12,7 @@ export const offerInitialState: OfferState = {
   salary: '',
   title: '',
   yourTasks: '',
+  legal: '',
 }
 
 const offerReducer = (state = offerInitialState, action: AnyAction): OfferState => {
@@ -30,6 +31,7 @@ const offerReducer = (state = offerInitialState, action: AnyAction): OfferState 
         salary: offerState.salary,
         title: offerState.title,
         yourTasks: offerState.yourTasks,
+        legal: offerState.legal,
       }
     default:
       return state

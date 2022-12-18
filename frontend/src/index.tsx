@@ -6,12 +6,21 @@ import reportWebVitals from './reportWebVitals'
 import AppRoutes from './Routes'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
-import ConnectedLoadingOverlayWrapper from './components/utils/LoadingOverlay'
+import ConnectedLoadingOverlayWrapper from './components/utils/LoadingOverlay/LoadingOverlay'
+import ConnectedStatusMessage from './components/utils/StatusMessage/StatusMessage'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+const overlay = document.createElement('div')
+overlay.setAttribute('id', 'overlay-root')
+document.getElementById('root')!.parentElement!.appendChild(overlay)
+const statusMessage = document.createElement('div')
+statusMessage.setAttribute('id', 'status-message-root')
+document.getElementById('root')!.parentElement!.appendChild(statusMessage)
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ConnectedStatusMessage />
       <ConnectedLoadingOverlayWrapper />
       <Router>
         <AppRoutes />

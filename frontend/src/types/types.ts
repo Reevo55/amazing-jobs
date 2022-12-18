@@ -1,12 +1,27 @@
 export interface AppState {
   profileState: ProfileState
   offerState: OfferState
+  statusMessageState: StatusMessageState
 }
 
 export interface ProfileState {
   isLoading: boolean
   loadingErrorOccurred: boolean
   userId?: string
+}
+
+export interface StatusMessageState {
+  showMessage: boolean
+  title?: string
+  message?: string
+  type?: MessageType
+  callback?: () => void
+}
+
+export enum MessageType {
+  success = 0,
+  failure = 1,
+  info = 2,
 }
 
 export interface OfferState {
@@ -19,6 +34,7 @@ export interface OfferState {
   yourTasks: string
   expectations: string
   benefits: string
+  legal: string
 }
 
 export interface CVState {

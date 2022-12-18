@@ -12,7 +12,6 @@ const profileReducer = (state = profileInitialState, action: AnyAction): Profile
 
   switch (action.type) {
     case ON_IS_LOADING_CHANGE:
-      console.log(`change to ${isLoading}`)
       return {
         ...state,
         isLoading,
