@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux'
-import { OfferState } from '../../types/types'
+import { MessageType, OfferState } from '../../types/types'
 import { onIsLoadingChange } from '../actions/profile'
+import { onShowStatusMessage } from '../actions/statusMessage'
 
 export const createNewOfferAndRedirect = (userId: string, offer: OfferState) => {
   return (dispatch: Dispatch) => {
@@ -28,8 +29,22 @@ export const createNewOfferAndRedirect = (userId: string, offer: OfferState) => 
         legal: offer.legal,
       }),
     })
-      .then(() => (window.top!.location = '/'))
-      .catch(error => console.log(error))
+      .then(res =>
+        res.status == 200
+          ? dispatch(
+              onShowStatusMessage(
+                'Sukces',
+                'Pomyslnie utworzono ofertę',
+                MessageType.success,
+                () => (window.top!.location = '/')
+              )
+            )
+          : dispatch(onShowStatusMessage('Coś poszło nie tak', 'Spróbuj ponownie później', MessageType.failure))
+      )
+      .catch(error => {
+        console.error(error)
+        dispatch(onShowStatusMessage('Coś poszło nie tak', 'Spróbuj ponownie później', MessageType.failure))
+      })
       .finally(() => dispatch(onIsLoadingChange(false)))
   }
 }

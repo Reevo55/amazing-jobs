@@ -62,6 +62,7 @@ def init_db_example():
     job1.things_to_do = "Spawanie"
     job1.required_education = "Podstawówka"
     job1.benefits = "Darmowe jedzenie"
+    job1.legal = "Wyrażam zgodę na przetwarzanie danych w celach rekrutacji"
 
     job2 = Job()
     job2.offer_type = 'pracuj.pl'
@@ -76,6 +77,7 @@ def init_db_example():
     job2.things_to_do = "Będziesz konstruował"
     job2.required_education = "Podstawówka"
     job2.benefits = "Darmowe jedzenie"
+    job2.legal = "Wyrażam zgodę na przetwarzanie danych w celach rekrutacji"
 
     db.session.add(job1)
     db.session.add(job2)
