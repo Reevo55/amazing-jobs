@@ -143,7 +143,7 @@ function Jobs() {
 
   useEffect(() => {
     getAndSetJobs().then(jobsResponse => {
-      setJobs(jobsResponse)
+      setJobs(filtersPipeline(jobsResponse, { search, city }))
     })
   }, [])
 
