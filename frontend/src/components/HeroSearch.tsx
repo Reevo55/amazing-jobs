@@ -12,9 +12,9 @@ const HeroSearch = (props: Props) => {
   }
 
   return (
-    <section className='top-0 flex items-center justify-center w-10/12 h-screen mx-auto'>
+    <section className='absolute top-0 left-0 flex items-center justify-center w-screen h-screen mx-auto -z-10'>
       <div>
-        <h1 className='font-bold text-center text-8xl'>
+        <h1 className='font-bold text-center text-8xl '>
           Get The <span className='text-primary'>Right Job</span> <br></br> You Deserve
         </h1>
         <SearchJobInput className='mt-8' searchAction={searchAction}></SearchJobInput>

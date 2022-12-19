@@ -9,6 +9,7 @@ import Login from './routes/Login'
 import ConnectedNewOffer from './routes/NewOffer'
 import GeneratorCV from './routes/GeneratorCV'
 import { OfferDetailsRoute } from './routes/OfferDetailsRoute'
+import FavoruiteJobs from './routes/FavouriteOffers'
 
 const BASE_PATH = '/'
 const AppRoutes: React.FC = () => {
@@ -22,6 +23,7 @@ const AppRoutes: React.FC = () => {
       <Route path={'/new-offer'} element={<ConnectedNewOffer />} />
       <Route path={'/offer-details'} element={<OfferDetailsRoute />} />
       <Route path={'/cv-generator'} element={<GeneratorCV />} />
+      <Route path={'/favourite-offers'} element={<FavoruiteJobs />} />
     </Routes>
   )
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import type { Filters as FiltersType } from '../types/types'
 import MyButton from './buttons/MyButton'
 
@@ -17,7 +17,6 @@ const Filters = (props: Props) => {
   const [max, setMax] = useState<number>(100000)
 
   const clearFilters = () => {
-    console.log('clear filters')
     setEducation('')
     setSkill('')
     setMin(0)

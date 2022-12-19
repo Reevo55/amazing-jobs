@@ -59,19 +59,19 @@ export interface CVState {
 
 export type Job = {
   job_id: number
-  user_id: String
-  offer_type: String
-  position_name: String
-  company_name: String
-  job_type: String
-  location: String
-  salary: String
-  short_description: String
-  required_experience: String
-  required_skills: String
-  things_to_do: String
-  required_education: String
-  benefits: String
+  user_id: string
+  offer_type: string
+  position_name: string
+  company_name: string
+  job_type: string
+  location: string
+  salary: string
+  short_description: string
+  required_experience: string
+  required_skills: string
+  things_to_do: string
+  required_education: string
+  benefits: string
 }
 
 export interface City {
