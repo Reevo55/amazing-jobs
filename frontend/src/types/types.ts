@@ -76,7 +76,6 @@ export type Job = {
 
 export interface City {
   name: string
-  enum: string
 }
 
 export type Filters = {

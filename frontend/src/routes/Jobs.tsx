@@ -7,83 +7,153 @@ import cities from '../assets/cities.json'
 import axios from 'axios'
 import JobList from '../components/lists/JobList'
 import { Filters as FiltersType, Job } from '../types/types'
+import { set } from 'immer/dist/internal'
+
+type FiltersWithSearch = FiltersType & {
+  search: string
+  city: string
+}
 
 function Jobs() {
   const [searchParams] = useSearchParams()
   const searchPhrase = searchParams.get('search') || ''
-  const cityEnum = searchParams.get('city')
+  const cityName = searchParams.get('city')
+
+  const [filters, setFilters] = useState<Partial<FiltersWithSearch>>({})
+
+  const [search, setSearch] = useState<string>(searchPhrase)
+  const [city, setCity] = useState<string>(cityName || 'Warszawa')
 
   const [jobs, setJobs] = useState<Job[]>([])
 
-  const cityObj = cities.pl.find(city => city.enum === cityEnum)
-
   const searchAction = async (searchPhrase: string, city: string) => {
-    const response = await axios.get(`http://127.0.0.1:5000/jobs`)
+    setSearch(searchPhrase)
+    setCity(city)
 
-    const cityObj = cities.pl.find(cityObj => cityObj.enum === city)
+    const jobsResponse = await getAndSetJobs()
 
-    const cityName = cityObj ? cityObj.name : ''
-
-    const jobs = response.data.job_offers.filter((job: Job) => {
-      if (!job.position_name.toLowerCase().includes(searchPhrase.toLowerCase())) {
-        return false
-      }
-
-      if (
-        job.short_description.toLowerCase().includes(searchPhrase.toLowerCase()) &&
-        job.location.toLowerCase().includes(cityName.toLowerCase())
-      ) {
-        return true
-      }
-
-      return true
+    const filteredJobs = filtersPipeline(jobsResponse, {
+      search,
+      city,
+      ...filters,
     })
-
-    setJobs(jobs)
-  }
-
-  const handleFilters = async (filters: FiltersType) => {
-    const response = await axios.get(`http://127.0.0.1:5000/jobs`)
-
-    const filteredJobs = filterJobs(response.data.job_offers, filters)
 
     setJobs(filteredJobs)
   }
 
-  const filterJobs = (jobs: Job[], filters: FiltersType) => {
-    console.log(filters)
-    return jobs.filter(job => {
-      if (
-        filters.education &&
-        job.required_education.toLowerCase().includes(filters.education.toLowerCase()) &&
-        filters.min &&
-        parseInt(job.salary.toString()) < filters.min &&
-        filters.max &&
-        parseInt(job.salary.toString()) > filters.max &&
-        filters.skill &&
-        job.required_skills.includes(filters.skill)
-      ) {
+  const getAndSetJobs = async () => {
+    const response = await axios.get(`http://127.0.0.1:5000/jobs`)
+
+    const jobsResponse = response.data.job_offers
+    return jobsResponse
+  }
+
+  const handleFilters = async (filters: FiltersType) => {
+    const filteredJobs = filtersPipeline(jobs, { ...filters, search, city })
+
+    setFilters(filters)
+    setJobs(filteredJobs)
+  }
+
+  const filtersPipeline = (jobs: Job[], filters: Partial<FiltersWithSearch>) => {
+    let filteredJobs
+
+    filteredJobs = jobs.filter(job => {
+      if (!filters.search) {
+        return true
+      }
+
+      if (job.position_name.toLowerCase().includes(filters.search.toLowerCase())) {
         return true
       }
 
       return false
     })
+
+    filteredJobs = filteredJobs.filter(job => {
+      if (!filters.city) {
+        return true
+      }
+
+      if (job.location.toLowerCase().includes(filters.city.toLowerCase())) {
+        return true
+      }
+
+      return false
+    })
+
+    filteredJobs = filteredJobs.filter(job => {
+      if (!filters.min) {
+        return true
+      }
+
+      if (parseInt(job.salary) >= filters.min) {
+        return true
+      }
+
+      return false
+    })
+
+    filteredJobs = filteredJobs.filter(job => {
+      if (!filters.max) {
+        return true
+      }
+
+      if (parseInt(job.salary) <= filters.max) {
+        return true
+      }
+
+      return false
+    })
+
+    filteredJobs = filteredJobs.filter(job => {
+      if (!filters.skill) {
+        return true
+      }
+
+      if (job.required_skills.toLowerCase().includes(filters.skill.toLowerCase())) {
+        return true
+      }
+
+      return false
+    })
+
+    filteredJobs = filteredJobs.filter(job => {
+      if (!filters.education) {
+        return true
+      }
+      console.log(job.required_education)
+
+      if (job.required_education.toLowerCase().includes(filters.education.toLowerCase())) {
+        return true
+      }
+
+      return false
+    })
+
+    return filteredJobs
+  }
+
+  const handleReset = () => {
+    setFilters({})
+    getAndSetJobs().then(jobsResponse => {
+      setJobs(jobsResponse)
+    })
   }
 
   useEffect(() => {
-    searchAction(searchPhrase, cityEnum || '')
-  }, [searchPhrase, cityEnum])
+    getAndSetJobs().then(jobsResponse => {
+      setJobs(jobsResponse)
+    })
+  }, [])
 
   return (
     <DefaultLayout className='grid grid-cols-6 gap-4'>
       <aside className='col-span-2'>
-        <Filters handleFilters={handleFilters}></Filters>
+        <Filters handleFilters={handleFilters} handleReset={handleReset}></Filters>
       </aside>
       <section className='col-span-4'>
-        <SearchJobInput
-          searchAction={searchAction}
-          startCity={cityObj}
-          startSearchPhrase={searchPhrase}></SearchJobInput>
+        <SearchJobInput searchAction={searchAction} startCity={city} startSearchPhrase={searchPhrase}></SearchJobInput>
 
         <section>
           <JobList jobs={jobs}></JobList>

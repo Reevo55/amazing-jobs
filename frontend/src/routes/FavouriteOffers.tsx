@@ -21,8 +21,9 @@ function FavoruiteJobs() {
   return (
     <DefaultLayout className=''>
       <section>
+        <p className='mt-20 text-6xl font-bold text-center'>Ulubione oferty</p>
         {jobs.length === 0 ? (
-          <p className='mt-20 text-3xl font-bold text-center'>You have no favourite jobs</p>
+          <p className='mt-20 text-3xl font-bold text-center'>Nie masz jeszcze ulubionych ofert</p>
         ) : (
           <JobList jobs={jobs}></JobList>
         )}
