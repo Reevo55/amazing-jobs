@@ -15,6 +15,9 @@ type JobListProps = {
 function JobItem({ job }: JobListProps) {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const createMarkup = (htmlValue: string) => {
+    return { __html: htmlValue }
+  }
 
   const checkOffer = () => {
     navigate(`/offer-details?jobId=${job.job_id}`)
@@ -90,11 +93,12 @@ function JobItem({ job }: JobListProps) {
             <span className='text-3xl font-normal '> {job.position_name} </span>{' '}
             <span className='text-base ml- font-extralight'>{job.company_name}</span>
           </h2>
+  
 
-          <p className='my-4 text-secondary'>{job.short_description}</p>
-          <p className=' text-secondary'> {job.required_education}</p>
-          <p className=' text-secondary'> {job.required_experience}</p>
-          <p className=' text-secondary'> {job.required_skills}</p>
+          <div className='my-4 text-secondary' dangerouslySetInnerHTML={createMarkup(job.short_description)} />
+          <div className=' text-secondary' dangerouslySetInnerHTML={createMarkup(job.required_education)}/>
+          <div className=' text-secondary' dangerouslySetInnerHTML={createMarkup(job.required_experience)}/> 
+          <div className=' text-secondary' dangerouslySetInnerHTML={createMarkup(job.required_skills)} />
 
           <p className='my-4'>
             <Icon icon='mdi:map-marker' className='inline-block w-6 h-6 mb-1 text-gray-400' aria-hidden='true' />
