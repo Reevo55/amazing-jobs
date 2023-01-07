@@ -45,7 +45,8 @@ const NewOffer = (newOfferState: NewOfferState) => {
   return (
     <DefaultLayout>
       <div className={'max-w-5xl'}>
-        <div className={'grid grid-cols-2 gap-4'}>
+      <h1 className='text-4xl font-extrabold text-center'>Stwórz nową ofertę</h1>
+        <div className={'grid grid-cols-2 gap-4 mt-7'}>
           <OfferFormInput
             props={{
               value: offer.title,
