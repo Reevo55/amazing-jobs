@@ -1,5 +1,7 @@
 import {onIsLoadingChange} from "../actions/profile";
 import {Dispatch} from "redux";
+import { onShowStatusMessage } from '../actions/statusMessage'
+import { MessageType } from '../../types/types'
 
 
 export const createNewUserAndRedirect = (data:any, endpoint:string) => {
@@ -21,7 +23,7 @@ export const createNewUserAndRedirect = (data:any, endpoint:string) => {
           console.log("Register success")
           return response.json();     
       }else if(response.status !== 200){
-          console.log("Register failed")
+        dispatch(onShowStatusMessage('Błąd', 'Podany email jest już zajęty! Spróbuj jeszcze raz z innymi danymi.', MessageType.failure))
           throw Error("Register failed")
       }
     })

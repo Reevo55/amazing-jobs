@@ -1,6 +1,7 @@
 import {onIsLoadingChange} from "../actions/profile";
 import {Dispatch} from "redux";
-
+import { onShowStatusMessage } from '../actions/statusMessage'
+import { MessageType } from '../../types/types'
 
 export const tryLoggingAndRedirect = (data:any, endpoint:string) => {
     
@@ -18,10 +19,9 @@ export const tryLoggingAndRedirect = (data:any, endpoint:string) => {
     })    
     .then((response) => {
       if(response.status === 200){
-          console.log("Login success")
           return response.json();     
       }else if(response.status !== 200){
-          console.log("Login failed")
+          dispatch(onShowStatusMessage('Błąd', 'Niepoprawny email lub hasło. Spróbuj jeszcze raz lub załóż konto.', MessageType.failure))
           throw Error("User not found")
       }
     })
